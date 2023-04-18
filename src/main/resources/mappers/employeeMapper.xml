@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.econrich.mapper.EmployeeMapper">
+    <!-- resultMap -->
+    <resultMap id="CurrentEmployeeResultMap" type="com.example.econrich.dto.CurrentEmployeeResultDTO">
+        <id property="employeeId" column="employee_id" />
+        <result property="firstName" column="first_name" />
+        <result property="lastName" column="last_name" />
+        <result property="email" column="email" />
+        <result property="phoneNumber" column="phone_number" />
+        <result property="hireDate" column="hire_date" />
+        <result property="jobTitle" column="job_title" />
+        <result property="salary" column="salary" />
+        <result property="departmentName" column="department_name" />
+        <result property="streetAddress" column="street_address" />
+        <result property="postalCode" column="postal_code" />
+        <result property="city" column="city" />
+        <result property="stateProvince" column="state_province" />
+        <result property="countryName" column="country_name" />
+        <result property="regionName" column="region_name" />
+    </resultMap>
+
+    <select id="findEmployeeDTOById" resultType="CurrentEmployeeResultMap">
+        SELECT e.employee_id, e.first_name,
+        e.last_name, e.email, e.phone_number, e.hire_date, j.job_title, e.salary,
+        d.department_name, l.street_address, l.postal_code, l.city, l.state_province,
+        c.country_name, r.region_name
+        FROM employees e
+        JOIN departments d on d.department_id = e.department_id
+        JOIN jobs j on j.job_id = e.job_id
+        JOIN locations l on d.location_id = l.location_id
+        JOIN countries c on l.country_id = c.country_id
+        JOIN regions r on c.region_id = r.region_id
+        WHERE e.employee_id = #{employeeId}
+    </select>
+
+</mapper>
