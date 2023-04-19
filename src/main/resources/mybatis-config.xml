@@ -8,5 +8,6 @@
     <typeAliases>
         <typeAlias type="com.example.econrich.dto.CurrentEmployeeDTO" alias="CurrentEmployeeResultMap" />
         <typeAlias type="com.example.econrich.dto.EmployeeJobHistoryDTO" alias="EmployeeJobHistoryResultMap" />
+        <typeAlias type="com.example.econrich.dto.DepartmentLocationDTO" alias="DepartmentLocationResultMap" />
     </typeAliases>
 </configuration>

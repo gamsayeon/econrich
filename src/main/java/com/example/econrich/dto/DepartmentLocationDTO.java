@@ -7,16 +7,13 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class LocationDTO {
-    private Long locationId;
-
+public class DepartmentLocationDTO {
+    private Long departmentId;
+    private String departmentName;
     private String streetAddress;
-
     private String postalCode;
-
     private String city;
-
     private String stateProvince;
-
-    private CountryDTO countryDTO;
+    private String countryName;
+    private String regionName;
 }
