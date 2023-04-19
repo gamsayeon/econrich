@@ -6,6 +6,7 @@
         <setting name="callSettersOnNulls" value="true"/>
     </settings>
     <typeAliases>
-        <typeAlias type="com.example.econrich.dto.CurrentEmployeeResultDTO" alias="CurrentEmployeeResultMap" />
+        <typeAlias type="com.example.econrich.dto.CurrentEmployeeDTO" alias="CurrentEmployeeResultMap" />
+        <typeAlias type="com.example.econrich.dto.EmployeeJobHistoryDTO" alias="EmployeeJobHistoryResultMap" />
     </typeAliases>
 </configuration>

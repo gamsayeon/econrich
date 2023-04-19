@@ -1,6 +1,6 @@
 package com.example.econrich.controller;
 
-import com.example.econrich.dto.CurrentEmployeeResultDTO;
+import com.example.econrich.dto.CurrentEmployeeDTO;
 import com.example.econrich.service.Impl.EmployeeServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,21 +16,21 @@ public class EmployeeController {
     }
 
     @GetMapping("/{employeeId}")
-    public ResponseEntity<CurrentEmployeeResultDTO> getEmployeeById(@PathVariable("employeeId") Long employeeId) {
-        CurrentEmployeeResultDTO currentEmployeeResultDTO = employeeService.getEmployeeById(employeeId);
-        return ResponseEntity.ok(currentEmployeeResultDTO);
+    public ResponseEntity<CurrentEmployeeDTO> getEmployeeById(@PathVariable("employeeId") Long employeeId) {
+        CurrentEmployeeDTO currentEmployeeDTO = employeeService.getEmployeeById(employeeId);
+        return ResponseEntity.ok(currentEmployeeDTO);
     }
 
     @GetMapping(params = "email")
-    public ResponseEntity<CurrentEmployeeResultDTO> getEmployeeByEmail(@RequestParam("email") String email) {
-        CurrentEmployeeResultDTO currentEmployeeResultDTO  = employeeService.getEmployeeByEmail(email);
-        return ResponseEntity.ok(currentEmployeeResultDTO);
+    public ResponseEntity<CurrentEmployeeDTO> getEmployeeByEmail(@RequestParam("email") String email) {
+        CurrentEmployeeDTO currentEmployeeDTO  = employeeService.getEmployeeByEmail(email);
+        return ResponseEntity.ok(currentEmployeeDTO);
     }
 
     @GetMapping(params = {"firstName", "lastName"})
-    public ResponseEntity<CurrentEmployeeResultDTO> getEmployeeByName(@RequestParam("firstName") String firstName,
-                                                                      @RequestParam("lastName") String lastName) {
-        CurrentEmployeeResultDTO currentEmployeeResultDTO  = employeeService.getEmployeeByName(firstName, lastName);
-        return ResponseEntity.ok(currentEmployeeResultDTO);
+    public ResponseEntity<CurrentEmployeeDTO> getEmployeeByName(@RequestParam("firstName") String firstName,
+                                                                @RequestParam("lastName") String lastName) {
+        CurrentEmployeeDTO currentEmployeeDTO  = employeeService.getEmployeeByName(firstName, lastName);
+        return ResponseEntity.ok(currentEmployeeDTO);
     }
 }

@@ -1,25 +1,21 @@
 package com.example.econrich.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
-public class CurrentEmployeeResultDTO {
-
+@NoArgsConstructor
+@Builder
+public class EmployeeJobHistoryDTO {
     private Long employeeId;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String phoneNumber;
-    private Date hireDate;
+    private Date startDate;
+    private Date endDate;
     private String jobTitle;
-    private BigDecimal salary;
     private String departmentName;
     private String streetAddress;
     private String postalCode;
