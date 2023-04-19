@@ -37,4 +37,31 @@
         WHERE e.employee_id = #{employeeId}
     </select>
 
+    <select id="findByEmail" resultType="CurrentEmployeeResultMap">
+        SELECT e.employee_id, e.first_name,
+        e.last_name, e.email, e.phone_number, e.hire_date, j.job_title, e.salary,
+        d.department_name, l.street_address, l.postal_code, l.city, l.state_province,
+        c.country_name, r.region_name
+        FROM employees e
+        JOIN departments d on d.department_id = e.department_id
+        JOIN jobs j on j.job_id = e.job_id
+        JOIN locations l on d.location_id = l.location_id
+        JOIN countries c on l.country_id = c.country_id
+        JOIN regions r on c.region_id = r.region_id
+        WHERE e.email = #{email}
+    </select>
+    <select id="findByName" resultType="CurrentEmployeeResultMap">
+        SELECT e.employee_id, e.first_name,
+        e.last_name, e.email, e.phone_number, e.hire_date, j.job_title, e.salary,
+        d.department_name, l.street_address, l.postal_code, l.city, l.state_province,
+        c.country_name, r.region_name
+        FROM employees e
+        JOIN departments d on d.department_id = e.department_id
+        JOIN jobs j on j.job_id = e.job_id
+        JOIN locations l on d.location_id = l.location_id
+        JOIN countries c on l.country_id = c.country_id
+        JOIN regions r on c.region_id = r.region_id
+        WHERE e.first_name = #{firstName} AND e.last_name = #{lastName}
+    </select>
+
 </mapper>

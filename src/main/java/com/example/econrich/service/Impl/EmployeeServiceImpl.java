@@ -1,7 +1,6 @@
 package com.example.econrich.service.Impl;
 
 import com.example.econrich.dto.CurrentEmployeeResultDTO;
-import com.example.econrich.dto.EmployeeDTO;
 import com.example.econrich.exception.EmployeeNotFoundException;
 import com.example.econrich.mapper.EmployeeMapper;
 import com.example.econrich.service.EmployeeService;
@@ -29,5 +28,27 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new EmployeeNotFoundException(employeeId);
         }
 
+    }
+
+    @Override
+    public CurrentEmployeeResultDTO getEmployeeByEmail(String email) {
+        Optional<CurrentEmployeeResultDTO> optionalEmployee = employeeMapper.findByEmail(email);
+        if (optionalEmployee.isPresent()) {
+            return optionalEmployee.get();
+        }
+        else{
+            throw new EmployeeNotFoundException(email);
+        }
+    }
+
+    @Override
+    public CurrentEmployeeResultDTO getEmployeeByName(String firstName, String lastName) {
+        Optional<CurrentEmployeeResultDTO> optionalEmployee = employeeMapper.findByName(firstName, lastName);
+        if (optionalEmployee.isPresent()) {
+            return optionalEmployee.get();
+        }
+        else{
+            throw new EmployeeNotFoundException(firstName, lastName);
+        }
     }
 }
