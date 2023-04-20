@@ -65,4 +65,17 @@
         WHERE e.first_name = #{firstName} AND e.last_name = #{lastName}
     </select>
 
+    <select id="findEmployeeByDepartmentId" resultType="com.example.econrich.dto.EmployeeDTO">
+        SELECT e.employee_id, e.first_name, e.last_name, e.email, e.phone_number, e.hire_date,
+        e.job_id, e.salary, e.commission_pct, e.manager_id, e.department_id
+        FROM employees e
+        WHERE e.department_id = #{departmentId}
+    </select>
+
+    <update id="updateSalaryByDepartmentId">
+        UPDATE employees e
+        SET e.salary = #{salary}
+        WHERE e.employee_id = #{employeeId}
+    </update>
+
 </mapper>
