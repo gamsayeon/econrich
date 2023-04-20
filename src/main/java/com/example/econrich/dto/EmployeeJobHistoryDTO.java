@@ -1,16 +1,13 @@
 package com.example.econrich.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class EmployeeJobHistoryDTO {
     private Long employeeId;
     private Date startDate;
