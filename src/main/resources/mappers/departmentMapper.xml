@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.econrich.mapper.DepartmentMapper">
+    <!-- resultMap -->
+    <resultMap id="DepartmentLocationResultMap" type="com.example.econrich.dto.DepartmentLocationDTO">
+        <id property="departmentId" column="department_id"/>
+        <result property="departmentName" column="department_name"/>
+        <result property="streetAddress" column="street_address"/>
+        <result property="postalCode" column="postal_code"/>
+        <result property="city" column="city"/>
+        <result property="stateProvince" column="state_province"/>
+        <result property="countryName" column="country_name"/>
+        <result property="regionName" column="region_name"/>
+    </resultMap>
+
+    <select id="findDepartmentById" resultType="DepartmentLocationResultMap">
+        SELECT d.department_id, d.department_name, l.street_address, l.postal_code, l.city, l.state_province, c.country_name, r.region_name
+        FROM departments d
+        JOIN locations l ON d.location_id = l.location_id
+        JOIN countries c ON l.country_id = c.country_id
+        JOIN regions r ON c.region_id = r.region_id
+        WHERE d.department_id = #{departmentId}
+    </select>
+
+    <select id="findDepartmentByName" resultType="DepartmentLocationResultMap">
+        SELECT d.department_id, d.department_name, l.street_address, l.postal_code, l.city, l.state_province, c.country_name, r.region_name
+        FROM departments d
+        JOIN locations l ON d.location_id = l.location_id
+        JOIN countries c ON l.country_id = c.country_id
+        JOIN regions r ON c.region_id = r.region_id
+        WHERE d.department_name = #{departmentName}
+    </select>
+
+</mapper>

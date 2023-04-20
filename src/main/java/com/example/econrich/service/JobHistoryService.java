@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface JobHistoryService {
     List<EmployeeJobHistoryDTO> getJobHistoryById(Long employeeId);
+
 }
