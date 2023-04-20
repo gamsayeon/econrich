@@ -6,4 +6,6 @@ import com.example.econrich.dto.DepartmentLocationDTO;
 public interface DepartmentService {
 
     DepartmentLocationDTO getDepartmentById(Long departmentId);
+
+    DepartmentLocationDTO getDepartmentByName(String departmentName);
 }

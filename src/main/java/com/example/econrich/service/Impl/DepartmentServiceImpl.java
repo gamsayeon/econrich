@@ -28,4 +28,16 @@ public class DepartmentServiceImpl implements DepartmentService {
         }
 
     }
+    @Override
+    public DepartmentLocationDTO getDepartmentByName(String departmentName){
+        Optional<DepartmentLocationDTO> optionalDepartmentLocationDTO= departmentMapper.findDepartmentByName(departmentName);
+
+        if (optionalDepartmentLocationDTO.isPresent()) {
+            return optionalDepartmentLocationDTO.get();
+        }
+        else{
+            throw new DepartmentNotFoundException(departmentName);
+        }
+
+    }
 }

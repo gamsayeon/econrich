@@ -3,14 +3,11 @@ package com.example.econrich.controller;
 import com.example.econrich.dto.DepartmentLocationDTO;
 import com.example.econrich.service.Impl.DepartmentServiceImpl;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/department")
+@RequestMapping("/departments")
 public class DepartmentController {
     private final DepartmentServiceImpl departmentService;
 
@@ -19,8 +16,14 @@ public class DepartmentController {
     }
 
     @GetMapping("/{departmentId}")
-    public ResponseEntity<DepartmentLocationDTO> getJobHistoryById(@PathVariable("departmentId") Long departmentId) {
+    public ResponseEntity<DepartmentLocationDTO> getDepartmentById(@PathVariable("departmentId") Long departmentId) {
         DepartmentLocationDTO departmentLocationDTO = departmentService.getDepartmentById(departmentId);
+        return ResponseEntity.ok(departmentLocationDTO);
+    }
+
+    @GetMapping(params = "name")
+    public ResponseEntity<DepartmentLocationDTO> getDepartmentByName(@RequestParam("name") String departmentName) {
+        DepartmentLocationDTO departmentLocationDTO = departmentService.getDepartmentByName(departmentName);
         return ResponseEntity.ok(departmentLocationDTO);
     }
 }
