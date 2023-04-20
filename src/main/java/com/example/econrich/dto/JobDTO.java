@@ -15,5 +15,6 @@ public class JobDTO {
     private String jobTitle;
 
     private BigDecimal minSalary;
+
     private BigDecimal maxSalary;
 }

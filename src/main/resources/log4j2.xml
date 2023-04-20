@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Properties>
+        <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%t] %logger{36} - %msg%n</Property>
+        <Property name="LOG_DIRECTORY">logs/</Property>
+        <Property name="APP_LOG_FILE_NAME">application.log</Property>
+        <Property name="ERROR_LOG_FILE_NAME">error.log</Property>
+    </Properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+        <RollingFile name="AppLogFile" fileName="${LOG_DIRECTORY}${APP_LOG_FILE_NAME}"
+                     filePattern="${LOG_DIRECTORY}archived/%d{yyyy-MM}/app-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="50 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="50" fileIndex="min"/>
+        </RollingFile>
+        <RollingFile name="ErrorLogFile" fileName="${LOG_DIRECTORY}${ERROR_LOG_FILE_NAME}"
+                     filePattern="${LOG_DIRECTORY}archived/%d{yyyy-MM}/error-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="50 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20" fileIndex="min"/>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="AppLogFile"/>
+        </Root>
+        <Logger name="com.example.econrich" level="debug" additivity="false">
+            <AppenderRef ref="AppLogFile"/>
+            <AppenderRef ref="ErrorLogFile"/>
+        </Logger>
+    </Loggers>
+</Configuration>
