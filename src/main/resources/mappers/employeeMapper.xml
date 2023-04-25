@@ -5,7 +5,7 @@
 
 <mapper namespace="com.example.econrich.mapper.EmployeeMapper">
     <!-- resultMap -->
-    <resultMap id="CurrentEmployeeResultMap" type="com.example.econrich.dto.CurrentEmployeeResultDTO">
+    <resultMap id="CurrentEmployeeResultMap" type="com.example.econrich.dto.CurrentEmployeeDTO">
         <id property="employeeId" column="employee_id" />
         <result property="firstName" column="first_name" />
         <result property="lastName" column="last_name" />
